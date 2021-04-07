@@ -309,7 +309,7 @@ SELECT p.oid,n.nspname as "Schema", p.proname as "Name",
  --      pg_catalog.pg_stat_get_function_time(p.oid)::text as "Time",
        pg_catalog.pg_stat_get_function_self_time(p.oid) as "Self Time",
        pg_catalog.pg_get_function_result(p.oid) as "Result data type", 
-       CASE WHEN p.prokind THEN 'agg' WHEN p.proiswindow THEN 'window' WHEN p.prorettype = 'pg_catalog.trigger'::pg_catalog.regtype THEN 'trigger' ELSE 'normal' END as "Type",
+       CASE WHEN p.prokind = 'a' THEN 'agg' WHEN p.prokind = 'w' THEN 'window' WHEN p.prorettype = 'pg_catalog.trigger'::pg_catalog.regtype THEN 'trigger' ELSE 'normal' END as "Type",
        CASE WHEN p.prorows=1000 THEN 'Default' else p.prorows::text END as "Rows",
        CASE WHEN p.procost=100  THEN 'Default' else p.procost::text END as "Cost",
        pg_catalog.pg_get_function_arguments(p.oid) as "Argument data types"
