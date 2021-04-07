@@ -53,15 +53,16 @@ fc_db_startup_connection ()
   fc_def_output_file v_database_in_file  'database_input.log'
   fc_def_output_file v_database_out_file 'database_output.log'
   fc_def_output_file v_database_err_file 'database_error.log'
-  cat <&3 | psql --file - ${moat370_sw_db_conn_params} > "${v_database_out_file}" 2> "${v_database_out_file}" &
+  # If you specify in 2> the same file as 1> instead of 2>&1, file will get messed if error occurs.
+  cat <&3 | psql --file - ${moat370_sw_db_conn_params} > "${v_database_out_file}" 2>&1 &
   v_db_client_pid=$!
 }
 
 fc_db_end_connection ()
 {
-  fc_run_query "EXIT;"
+  # fc_run_query "EXIT;"
   [ -p "${v_database_fifo_file}" ] && rm -f "${v_database_fifo_file}"
-  fc_seq_output_file v_database_out_file
+  fc_zip_file "${moat370_zip_filename}" "${v_database_in_file}"
   fc_zip_file "${moat370_zip_filename}" "${v_database_out_file}"
   db_connection_kill
 }

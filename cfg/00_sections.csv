@@ -13,6 +13,7 @@
 3b,pgedb360_sqls.sh,SQL Section,${skip_if_no_pg_stat_statements}
 3c,pgedb360_sessions.sh,Idle and Active Sessions Profile
 3d,pgedb360_replica.sh,Replica
+4a,pgedb360_tool_logs.sh,Tool Logs
 ##
 ## Note: You can optionally have sections 0a_pre.sh and 0b_post.sh (not defined on this csv).
 ## They are not mandatory and they instruct moat to run only once a initial sql before all of them (0a) or after all of them (0b).
