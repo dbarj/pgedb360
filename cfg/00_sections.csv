@@ -1,0 +1,19 @@
+## Add or remove new Sections in this file. No need to update anywhere else.
+## Use "," as field separator
+## Format: Section ID [1a - 9z], File Sufix Name, Section Description, Skip Variables (If last field is empty or its variables return NULL, sql WILL be executed)
+##
+1a,pgedb360_database_state.sh,System under observation
+1b,pgedb360_database_configuration.sh,DB Configuration
+1c,pgedb360_schemas.sh,Schema Objects
+2a,pgedb360_buffer_cache.sh,Buffer Cache
+2b,pgedb360_checkpoints.sh,Checkpoints
+2c,pgedb360_bg_writer.sh,BG Writer
+2d,pgedb360_locks.sh,Locks
+3a,pgedb360_security.sh,Security
+3b,pgedb360_sqls.sh,SQL Section,${skip_if_no_pg_stat_statements}
+3c,pgedb360_sessions.sh,Idle and Active Sessions Profile
+3d,pgedb360_replica.sh,Replica
+4a,pgedb360_tool_logs.sh,Tool Logs
+##
+## Note: You can optionally have sections 0a_pre.sh and 0b_post.sh (not defined on this csv).
+## They are not mandatory and they instruct moat to run only once a initial sql before all of them (0a) or after all of them (0b).
