@@ -13,3 +13,8 @@ from   pg_extension
 where  extname='pg_stat_statements'
 \gset
 
+-- Check if pgsentinel module is enabled.
+SELECT count(1) as pgedb360_pg_ash
+from   pg_extension
+where  extname='pgsentinel'
+\gset
